@@ -63,10 +63,11 @@ document
       try {
         const result = await submitForm(name, email);
         if (result.success) {
-          console.log(result.message);
-          showMessage(result.message);
-          form.reset();
+          debugLog(result.message);
 
+          showMessage(result.message);
+
+          form.reset();
           return;
         } else {
           debugLog(result.message);
