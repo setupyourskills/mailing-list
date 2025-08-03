@@ -1,0 +1,9 @@
+# PHP
+vendor/
+*.log
+.php-cs-fixer.cache
+
+# Dotenv / config
+.env
+.env.*
+!.env.example
