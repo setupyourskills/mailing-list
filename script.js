@@ -1,7 +1,11 @@
+// Enable/disable debug mode (console.log)
 const DEBUG = true;
 
+// Colors for error and success messages
 const RED = "#ff8a8a";
 const GREEN = "#8aff8a";
+
+// Standardized error messages
 const MESSAGES = {
   NAME_TOO_SHORT: "The name must be at least 2 characters long!",
   NAME_TOO_LONG: "The name cannot exceed 100 characters!",
@@ -11,10 +15,12 @@ const MESSAGES = {
   SUBMIT_ERROR: "An error occurred!",
 };
 
+// Conditional log based on debug mode
 function debugLog(...args) {
   if (DEBUG) console.log(...args);
 }
 
+// Form field validation
 function validateForm(name, email) {
   const nameRegex = /^[a-zA-ZÀ-ÿ\s\-']+$/;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -25,9 +31,10 @@ function validateForm(name, email) {
   if (!emailRegex.test(email)) return MESSAGES.EMAIL_INVALID_FORMAT;
   if (email.length > 255) return MESSAGES.EMAIL_TOO_LONG;
 
-  return null;
+  return null; // No issues detected
 }
 
+// Display a message in the #result div (error or success)
 function showMessage(text, isError = false) {
   const resultDiv = document.getElementById("result");
 
@@ -35,6 +42,7 @@ function showMessage(text, isError = false) {
   resultDiv.style.color = isError ? RED : GREEN;
 }
 
+// Submit the form via fetch (POST, FormData)
 async function submitForm(name, email) {
   const data = new FormData();
   data.append("name", name);
@@ -48,10 +56,11 @@ async function submitForm(name, email) {
   return response.json();
 }
 
+// Form submit event handler
 document
   .getElementById("userForm")
   .addEventListener("submit", async function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault(); // Prevent page reload
 
     const form = e.target;
     const name = form.name.value.trim();
@@ -81,5 +90,5 @@ document
       }
     }
 
-    showMessage(error, true);
+    showMessage(error, true); // Show the error
   });
