@@ -1,6 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
+/**
+ * Centralized application messages (success and error).
+ *
+ * Usage: Messages::USER_ADDED_SUCCESS, etc.
+ */
 class Messages
 {
     public const USER_ADDED_SUCCESS = "User successfully added";
